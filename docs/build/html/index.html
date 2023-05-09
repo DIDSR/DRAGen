@@ -36,19 +36,19 @@
 </div>
 <span class="target" id="module-src.data_input"></span><dl class="py function">
 <dt class="sig sig-object py" id="src.data_input.load_attributes">
-<span class="sig-prename descclassname"><span class="pre">src.data_input.</span></span><span class="sig-name descname"><span class="pre">load_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subgroup_information</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Path'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_information</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'categorical'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_processes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.data_input.load_attributes" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">src.data_input.</span></span><span class="sig-name descname"><span class="pre">load_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subgroup_information</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Path'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_information</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'categorical'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_processes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.data_input.load_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads image filepaths and patient attributes from provided csv file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>csv_file</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Filepath to summary csv.</p></li>
-<li><p><strong>subgroup_information</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – WIP</p></li>
+<li><p><strong>subgroup_information</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Subgroup attributes in the format Group:[subgroups] (ex. {“Sex”:[“Male”,”Female”]}).</p></li>
 <li><p><strong>image_path_column</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>) – Name of column in csv_file listing image filepaths.</p></li>
-<li><p><strong>id_column</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>) – Name of columns in csv_file listing unique patient/sample identifiers.</p></li>
-<li><p><strong>missing_information</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, optional, options=[‘raise’, ‘remove’], default=’raise’) – How to handle samples missing information; ‘raise’: raise an exception, ‘remove’: remove samples missing information</p></li>
+<li><p><strong>id_column</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <cite>optional</cite>) – Name of columns in csv_file listing unique patient/sample identifiers.</p></li>
+<li><p><strong>missing_information</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>) – How to handle samples missing information; ‘raise’: raise an exception, ‘remove’: remove samples missing information</p></li>
 <li><p><strong>info_format</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>) – Format to return patient information in.</p></li>
-<li><p><strong>rel_path</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <cite>optional</cite>) – Declare a relative path for image file paths.</p></li>
-<li><p><strong>n_processes</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>, <cite>optional</cite>) – Number of processes to use while checking image file paths, if None, uses number of available cores.</p></li>
+<li><p><strong>rel_path</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <cite>optional</cite>) – Declare a relative path for image file paths.</p></li>
+<li><p><strong>n_processes</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <cite>optional</cite>) – Number of processes to use while checking image file paths, if <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, uses number of available cores.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -56,6 +56,27 @@
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.data_input.load_image">
+<span class="sig-prename descclassname"><span class="pre">src.data_input.</span></span><span class="sig-name descname"><span class="pre">load_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.data_input.load_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads image in the specified image mode, returns numpy array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_path</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – File path to image.</p></li>
+<li><p><strong>mode</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – PIL.Image mode to use; default=’RGB’.</p></li>
+<li><p><strong>scale</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code>, or <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <cite>optional</cite>) – Scale to resize image; if <code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>, will resize to (scale, scale); if <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, will not resize.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Image array.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array</p>
 </dd>
 </dl>
 </dd></dl>

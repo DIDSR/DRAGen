@@ -7,7 +7,7 @@ import os
 
 # TODO: better term for 'missing_information' argument
 
-def load_attributes(csv_file, subgroup_information={}, image_path_column="Path", id_column=None, missing_information='raise', info_format='categorical', rel_path=None, n_processes=None):
+def load_attributes(csv_file, subgroup_information:dict, image_path_column="Path", id_column=None, missing_information='raise', info_format='categorical', rel_path=None, n_processes=None):
   """
   Loads image filepaths and patient attributes from provided csv file.
   
@@ -16,19 +16,19 @@ def load_attributes(csv_file, subgroup_information={}, image_path_column="Path",
   csv_file : :obj:`str`
       Filepath to summary csv.
   subgroup_information : :obj:`dict`
-      WIP
+      Subgroup attributes in the format Group:[subgroups] (ex. {"Sex":["Male","Female"]}).
   image_path_column : :obj:`str`, `optional`
       Name of column in csv_file listing image filepaths.
-  id_column : :obj:`str`, `optional`
+  id_column : :obj:`str` or :obj:`None`, `optional`
       Name of columns in csv_file listing unique patient/sample identifiers.
   missing_information : :obj:`str`, `optional`
       How to handle samples missing information; 'raise': raise an exception, 'remove': remove samples missing information
   info_format : :obj:`str`, `optional`
       Format to return patient information in.
-  rel_path : :obj:`str`, `optional`
+  rel_path : :obj:`str` or :obj:`None`, `optional`
       Declare a relative path for image file paths.
-  n_processes : :obj:`int`, `optional`
-      Number of processes to use while checking image file paths, if None, uses number of available cores.
+  n_processes : :obj:`int` or :obj:`None`, `optional`
+      Number of processes to use while checking image file paths, if :obj:`None`, uses number of available cores.
   
   Returns
   -------

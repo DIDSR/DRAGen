@@ -5,7 +5,7 @@ Welcome to RST: Decision Region Analysis's documentation!
    :caption: Contents:
 
 .. automodule:: src.data_input
-   :members: load_attributes
+   :members: load_attributes, load_image
 
 
 
