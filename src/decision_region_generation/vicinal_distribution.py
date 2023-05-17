@@ -7,16 +7,16 @@ def get_plane(img1, img2, img3):
     
     Parameters
     ----------
-    img1, img2, img3 : numpy.array
+    img1, img2, img3 : :obj:`numpy.array`
         Three numpy arrays of images; must all be the same size.
         
     Returns
     -------
-    a, b_orthog : numpy.array
+    a, b_orthog : :obj:`numpy.array`
         2 orthogonal basis vectors for the plane spanned by the input images
-    b : numpy.array
+    b : :obj:`numpy.array`
         The second basis vecotr, before being made orthogonal
-    coords : list
+    coords : :obj:`list`
         Coordinates of img0, img1, and img2    
     '''
     if not img1.shape == img2.shape == img3.shape:
@@ -35,14 +35,26 @@ def get_plane(img1, img2, img3):
 
 
 class plane_dataset():
-    def __init__(self, img1, img2, img3, steps=5, expand=0, shape='rectangle', dtype='uint8'):
+    """ Generates a vicinal distribution from the input images. 
+    
+    Parameters
+    ----------
+    img1, img2, img3 : :obj:`numpy.array`
+        Images from which to construct the vicinal distribution, should all be the same shape and data type.
+    steps : :obj:`int`, `optional`
+        Number of steps to take between images, affects the number of virtual images generated.
+    expand : :obj:`float`, `optional`
+        How far beyond the original images to expand the plane; only works with shape='rectangle'
+    shape : :obj:`str`, `optional`
+        Shape of the region of plane to generate samples for.
+    """
+    def __init__(self, img1, img2, img3, steps=5, expand=0, shape='rectangle'):
         if img1.dtype == 'uint8':
             img1 = img1/255
             img2 = img2/255
             img3 = img3/255
         self.base_image_mean = np.average(np.stack([img1, img2, img3]), (0,1,2))
         self.base_image_std = np.std(np.stack([img1, img2, img3]), (0,1,2))
-        self.dtype = dtype
         self.shape = shape
         self.steps = steps
         self.original_images = [img1, img2, img3]

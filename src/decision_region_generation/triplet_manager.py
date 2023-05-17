@@ -6,31 +6,28 @@ import pandas as pd
 import random
 
 class TripletManager():
-    """ Wrapper class to generate vicinal distributions for specified groups """
-    def __init__(self, input_csv, classes, triplets_per_group, 
-                subgroup_attributes=None, 
-                image_rel_path=None, sample_id_column=None, mix_subgroups=False, 
-                mix_classes=False):
-        """
-        Parameters
-        ----------
-        input_csv : :obj:'str'
-            File path for input csv; passed to :obj:'data_input.load_attributes'.
-        classes : :obj:'dict'
-            All potential output classes, organized by task.
-        triplets_per_group : :obj:'int'
-            Number of triplets to generate for each group of samples.
-        subgroup_attributes : :obj:'dict', 'optional'
-            All subgroup attributes options, organized by attribute; ex. {'Sex":['F','M']}
-        image_rel_path : :obj:'str', 'optional'
-            Relative image path; passed to :obj:'data_input.load_attributes'.
-        sample_id_column : :obj:'str', 'optional'
-            ID column for input csv; passed to :obj:'data_input.load_attributes'.
-        mix_subgroups : :obj:'bool', 'optional'
-            If true, will not separate groups by subgroup attributes.
-        mix_classes : :obj:'bool', 'optional'
-            If true, will not separate groups by class.
-        """
+    """ Wrapper class to generate vicinal distributions for specified groups.
+
+    Parameters
+    ----------
+    input_csv : :obj:`str`
+        File path for input csv; passed to :obj:`data_input.load_attributes`.
+    classes : :obj:`dict`
+        All potential output classes, organized by task.
+    triplets_per_group : :obj:`int`
+        Number of triplets to generate for each group of samples.
+    subgroup_attributes : :obj:`dict`, `optional`
+        All subgroup attributes options, organized by attribute; ex. {'Sex':['F','M']}
+    image_rel_path : :obj:`str`, `optional`
+        Relative image path; passed to :obj:`data_input.load_attributes`.
+    sample_id_column : :obj:`str`, `optional`
+        ID column for input csv; passed to :obj:`data_input.load_attributes`.
+    mix_subgroups : :obj:`bool`, `optional`
+        If true, will not separate groups by subgroup attributes.
+    mix_classes : :obj:`bool`, `optional`
+        If true, will not separate groups by class.
+    """
+    def __init__(self, input_csv, classes, triplets_per_group, subgroup_attributes=None, image_rel_path=None, sample_id_column=None, mix_subgroups=False, mix_classes=False):
         self.input_csv = input_csv
         self.classes = classes
         self.triplets_per_group = triplets_per_group
