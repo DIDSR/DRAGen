@@ -1,9 +1,4 @@
-import torchvision
-import torchvision.transforms as transforms
-import torch
 import numpy as np
-import random
-import os
 from PIL import Image, ImageOps
 
 def get_plane(img1, img2, img3):
