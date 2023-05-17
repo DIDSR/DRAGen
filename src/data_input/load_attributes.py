@@ -61,6 +61,10 @@ def load_attributes(csv_file, subgroup_information:dict, image_path_column="Path
     df = df[[image_path_column] + list(subgroup_information.keys())].copy()
   if info_format == 'binary':
     df = pd.get_dummies(df, columns=list(subgroup_information.keys()))
+  # rename image path (and ID) columns to standard format
+  df = df.rename(columns={image_path_column:'Path'})
+  if id_column is not None:
+    df = df.rename(columns={id_column:"ID"})
   return df
   
 def check_img_paths(img_paths:np.array, n_processes=None): # TODO: n_processes as an argument
