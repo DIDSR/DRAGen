@@ -86,6 +86,10 @@ class plane_dataset():
 
     def __getitem__(self, idx):
         return self.normalize(self.base_img + self.coefs1[idx]*self.vec1 + self.coefs2[idx]*self.vec2)
+
+    def __iter__(self):
+        for i in range(self.coefs1.shape[0]):
+            yield self[i]
         
     def get_coords(self, idx):
         return self.coefs1[idx], self.coefs2[idx]
