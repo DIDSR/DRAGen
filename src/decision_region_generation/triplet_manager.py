@@ -114,6 +114,10 @@ class TripletManager():
     
     def __len__(self):
         return(len(self.triplet_df))
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
     
 def random_combination(iterable, r):
     """ Random selection from itertools.combinations """      
