@@ -11,7 +11,7 @@ Welcome to RST: Decision Region Analysis's documentation!
    :members: TripletManager
 
 .. automodule:: src.decision_region_generation.vicinal_distribution
-   :members: get_plane, plane_dataset
+   :members: get_plane, plane_dataset, plane_dataloader
 
 
 

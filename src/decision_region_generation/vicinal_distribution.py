@@ -141,7 +141,7 @@ class plane_dataloader():
         Number of images to include in each batch.
     channel_idx : :obj:`int`, `optional`
         Dimension index of the images' channel dimension.
-    output_channel_idx : :obj`int`, `optional`
+    output_channel_idx : :obj:`int`, `optional`
         Desired output dimension index of the images' channel dimension.
     """
     def __init__(self, dataset:plane_dataset, batch_size:int, channel_idx=-1, output_channel_idx=0):
