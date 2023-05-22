@@ -129,3 +129,40 @@ class plane_dataset():
                 img = ImageOps.expand(img, original_border_thickness, original_border_color)
             new_img.paste(img, (x0,y0))
         return new_img
+
+class plane_dataloader():
+    """ Dataloader to be used alongside the :obj:`plane_dataset` class.
+
+    Parameters
+    ----------
+    dataset : :obj:`plane_dataset`
+        Plane_data to be loaded.
+    batch_size : :obj:`int`
+        Number of images to include in each batch.
+    channel_idx : :obj:`int`, `optional`
+        Dimension index of the images' channel dimension.
+    output_channel_idx : :obj`int`, `optional`
+        Desired output dimension index of the images' channel dimension.
+    """
+    def __init__(self, dataset:plane_dataset, batch_size:int, channel_idx=-1, output_channel_idx=0):
+        self.dataset = dataset
+        self.batch_size = batch_size
+        self._channel_idx = channel_idx
+        self._out_channel_idx = output_channel_idx
+        self._iterator = iter(range(len(self.dataset)))
+    
+    def __iter__(self):
+        batch = [0] * self.batch_size
+        idx_in_batch = 0
+        for idx in self._iterator:
+            if self._channel_idx == self._out_channel_idx:
+                batch[idx_in_batch] = self.dataset[idx]
+            else:
+                batch[idx_in_batch] = np.moveaxis(self.dataset[idx],self._channel_idx, self._out_channel_idx)
+            idx_in_batch += 1
+            if idx_in_batch == self.batch_size:
+                yield np.stack(batch)
+                idx_in_batch = 0
+                batch = [0] * self.batch_size
+        if idx_in_batch > 0:
+            yield np.stack(batch[:idx_in_batch])       
