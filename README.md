@@ -1,4 +1,4 @@
-# Regulatory Science Tool: Decision Region Analysis
+# Regulatory Science Tool: Decision Region Analysis for Generalizability (DRAG) of AI models: Estimating model generalizability in the case of cross-reactivity and population shift
 
 ## Introduction
 Prediction model deployment of virtual images generated from vicinal distribution provides smooth decision region transitions between various subgroups. This RST is used to analyze the compositions of these decision regions for many subgroups to provide insight into the how well they are represented in the data and the discontinuity of subgroup decision regions leading to incorrect predictions.
