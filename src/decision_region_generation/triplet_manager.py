@@ -101,8 +101,11 @@ class TripletManager():
         
         if type(key) == int:
             t = self.triplet_df.at[key, 'triplet']
+            group = self.triplet_df.at[key, 'group']
         elif type(key) == tuple:
             t = self.triplet_df[(self.triplet_df['group'] == key[0]) & (self.triplet_df['triplet_number'] == key[1])]['triplet'].values[0]
+            group = key[0]
+            key = key[1]
         images = []
         for i in t:
             if id_col == 'Path':
@@ -110,7 +113,7 @@ class TripletManager():
             else:
                 img_path = self.df[self.df[id_col] == i]['Path'].sample(1).values[0]
             images.append(load_image(img_path))
-        return {"triplet":t, 'key':key, 'images':images}
+        return {"triplet":t, 'group':group,'key':key, 'images':images}
     
     def __len__(self):
         return(len(self.triplet_df))
