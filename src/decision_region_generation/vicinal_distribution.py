@@ -153,16 +153,19 @@ class plane_dataloader():
     
     def __iter__(self):
         batch = [0] * self.batch_size
+        batch_idxs = [0] * self.batch_size
         idx_in_batch = 0
         for idx in self._iterator:
             if self._channel_idx == self._out_channel_idx:
                 batch[idx_in_batch] = self.dataset[idx]
             else:
                 batch[idx_in_batch] = np.moveaxis(self.dataset[idx],self._channel_idx, self._out_channel_idx)
+            batch_idxs[idx_in_batch] = idx
             idx_in_batch += 1
             if idx_in_batch == self.batch_size:
-                yield np.stack(batch)
+                yield np.stack(batch), batch_idxs
                 idx_in_batch = 0
                 batch = [0] * self.batch_size
+                batch_idxs = [0] * self.batch_size
         if idx_in_batch > 0:
-            yield np.stack(batch[:idx_in_batch])       
+            yield np.stack(batch[:idx_in_batch]), batch_idxs[:idx_in_batch]      
