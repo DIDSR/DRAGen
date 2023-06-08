@@ -75,6 +75,8 @@ def check_img_paths(img_paths:np.array, n_processes=None): # TODO: n_processes a
   # (1) + (2) # os.access returns False if file does not exist
   exists = np.array(pool.starmap(os.access, zip(img_paths,itertools.repeat(os.R_OK))))
   existing_paths = img_paths[exists]
+  if len(existing_paths) < len(img_paths):
+    raise Exception(f"Invalid image path given for {len(img_paths)-len(existing_paths)}/{len(img_paths)} image(s). Check input_csv and img_rel_path.")
   # (3) check that file format is supported by PIL.Image
   supported_exts = Image.registered_extensions()
   extension_check = np.array(pool.starmap(check_img_extension, zip(existing_paths, itertools.repeat(supported_exts))))
