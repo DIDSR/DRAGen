@@ -139,14 +139,17 @@ class plane_dataloader():
         Plane_data to be loaded.
     batch_size : :obj:`int`
         Number of images to include in each batch.
+    output_dtype : `optional`
+        Data type of returned arrays.
     channel_idx : :obj:`int`, `optional`
         Dimension index of the images' channel dimension.
     output_channel_idx : :obj:`int`, `optional`
         Desired output dimension index of the images' channel dimension.
     """
-    def __init__(self, dataset:plane_dataset, batch_size:int, channel_idx=-1, output_channel_idx=0):
+    def __init__(self, dataset:plane_dataset, batch_size:int, output_dtype=None, channel_idx=-1, output_channel_idx=0):
         self.dataset = dataset
         self.batch_size = batch_size
+        self.output_dtype = output_dtype
         self._channel_idx = channel_idx
         self._out_channel_idx = output_channel_idx
         self._iterator = iter(range(len(self.dataset)))
@@ -163,9 +166,15 @@ class plane_dataloader():
             batch_idxs[idx_in_batch] = idx
             idx_in_batch += 1
             if idx_in_batch == self.batch_size:
-                yield np.stack(batch), batch_idxs
+                if self.output_dtype is None:
+                    yield np.stack(batch), batch_idxs
+                else:
+                    yield np.stack(batch).astype(self.output_dtype), batch_idxs
                 idx_in_batch = 0
                 batch = [0] * self.batch_size
                 batch_idxs = [0] * self.batch_size
         if idx_in_batch > 0:
-            yield np.stack(batch[:idx_in_batch]), batch_idxs[:idx_in_batch]      
+            if self.output_dtype is None:
+                yield np.stack(batch[:idx_in_batch]), batch_idxs[:idx_in_batch]      
+            else:
+                yield np.stack(batch[:idx_in_batch]).astype(self.output_dtype), batch_idxs[:idx_in_batch]      
