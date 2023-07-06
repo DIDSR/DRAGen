@@ -5,17 +5,20 @@ from argparse import ArgumentParser
 #tasks = {"COVID_positive":{1:'Yes',0:'No'}}
 
 class CustomParser():
+  """
+  A custom argument parser.
+  
+  Parameters
+  ----------
+  mode
+      The purpose for which the parser is being created; must be 'Analyze', 'Complete', or 'Generate'.
+  
+  Raises
+  ======
+  ValueError
+    mode value is not 'Analyze', 'Complete', or 'Generate'.
+  """
   def __init__(self, mode:str):
-    """
-    A custom argument parser.
-    
-    Parameters
-    ----------
-    mode : str
-        The purpose for which the parser is being created; must be 'Analyze', 'Complete', or 'Generate'.
-    
-    
-    """
     modes = {'Analyze','Complete', 'Generate'}
     if mode not in modes:
       raise ValueError(f"mode must be one of {modes}")
@@ -26,13 +29,12 @@ class CustomParser():
     self.parser.add_argument('--classes', nargs="+", required=True)
     self.parser.add_argument('--class_order', default='0,1', choices=['0,1','1,0'])
     self.parser.add_argument('--subgroup_attributes', nargs="+", required=True)
-    
+    self.parser.add_argument('--overwrite', action='store_true', default=False) # NOTE: will delete all data in hdf5 file at beginning of running if generating
     if mode == 'Generate' or mode == 'Complete':
       ## Arguments used to generate and evaluate vicinal distributions ------------------------------------------
       self.parser.add_argument('--model_file', type=str, required=True)
       self.parser.add_argument('--data_csv', type=str, required=True)
       self.parser.add_argument('--batch_size', type=int, default=5)
-      self.parser.add_argument('--overwrite', action='store_true', default=False) # NOTE: will delete all data in hdf5 file at beginning of running
       self.parser.add_argument('--steps', type=int, default=5, 
         help="Number of 'steps' to take between images in generating the vicinal distribution")
       self.parser.add_argument('--n_triplets', type=int, default=5)
