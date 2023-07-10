@@ -1,3 +1,2 @@
-from .determine_composition import determine_composition, get_compositions, save_compositions
-from .create_figures import plot_analysis
-from .plot_decision_regions import plot_decision_regions_bulk
+from .determine_composition import get_compositions, save_compositions
+from .create_figures import plot_decision_regions, plot_figures, set_params
