@@ -17,19 +17,19 @@ def generate_decision_regions(input_csv_path:str, onnx_model_path:str, output_pa
     Parameters
     ==========
     input_csv_path
-        File path to the input csv; passed to :func:`load_attributes <src.data_input.load_attributes.load_attributes>`
+        File path to the input csv; passed to :func:`load_attributes <src.data_input.load_attributes.load_attributes>`.
     onnx_model_path
         Onnx model file path.
     output_path
         Name and path for output file.
     batch_size
-        Batch size for :class:'plane_loader <src.decision_region_generation.vicinial_distribution.plane_loader>'
+        Batch size for :class:`plane_loader <src.decision_region_generation.vicinial_distribution.plane_loader>`.
     manager_kwargs : dict
-        Keyword arguments to be passed to :class:`TripletManager <src.decision_region_generation.triplet_manager.TripletManager>`
+        Keyword arguments to be passed to :class:`TripletManager <src.decision_region_generation.triplet_manager.TripletManager>`.
     vicinal_kwargs : dict
-        Keyword arguments to be passed to :class:'plane_dataset <src.decision_region_generation.vicinial_distribution.plane_dataset>'
+        Keyword arguments to be passed to :class:`plane_dataset <src.decision_region_generation.vicinial_distribution.plane_dataset>`.
     overwrite : bool
-        If True, will overwrite existing file at output_path
+        If True, will overwrite existing file at output_path.
     """
     # setup ------------------------------------------------------------------------------------------------------------------------
     print("Loading model...",end='')

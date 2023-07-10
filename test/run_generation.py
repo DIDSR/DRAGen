@@ -12,8 +12,12 @@ def run_generation(args):
         'triplets_per_group':args.n_triplets,
         'image_rel_path':args.img_rel_path
     }
+    vicinal_args = {
+        'steps':args.steps,
+        'shape':args.shape
+    }
     generate_decision_regions(input_csv_path=args.data_csv, onnx_model_path=args.model_file, output_path=decision_region_file,
-        overwrite=args.overwrite, manager_kwargs=manager_args, batch_size=args.batch_size)
+        overwrite=args.overwrite, manager_kwargs=manager_args, batch_size=args.batch_size, vicinal_kwargs=vicinal_args)
 
 if __name__ == '__main__':
     parser = args.CustomParser(mode='Generate')

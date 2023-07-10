@@ -39,6 +39,8 @@ class CustomParser():
       self.parser.add_argument('--batch_size', type=int, default=5)
       self.parser.add_argument('--steps', type=int, default=5, 
         help="Number of 'steps' to take between images in generating the vicinal distribution")
+      self.parser.add_argument("--shape", type=str, default='triangle', choices=['triangle','rectangle'],
+        help="Shape of generated decision regions.")
       self.parser.add_argument('--n_triplets', type=int, default=5)
       self.parser.add_argument('--img_rel_path', type=str, default=None)
     if mode == 'Analyze' or mode == 'Complete':

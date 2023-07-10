@@ -38,7 +38,11 @@ class TripletManager():
         self.mix_classes = mix_classes
         self.sample_attributes = self._determine_attributes()
         self.groups = self._determine_groups()
+        print(f"Created {len(self.groups)} groups:")
+        for k, v in self.groups.items():
+            print(f"\tgroup {k}: {v}")
         self.df = load_attributes(self.input_csv, rel_path = image_rel_path, subgroup_information=self.sample_attributes, id_column=sample_id_column)
+        print(f"Generating {self.triplets_per_group*len(self.groups)} triplets ({self.triplets_per_group}/group)")
         self.triplets = self._generate_triplets()
         self.triplet_df = self._get_triplet_df()
 

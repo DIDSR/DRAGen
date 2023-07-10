@@ -18,4 +18,3 @@ def run_analysis(args):
 if __name__ == "__main__":
     parser = args.CustomParser(mode='Analyze')
     run_analysis(parser.parse_args())
-    print("DONE")
