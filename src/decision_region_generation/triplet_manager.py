@@ -96,7 +96,11 @@ class TripletManager():
         return tdf 
 
     def __getitem__(self, key):
-        """ Returns the vicinal distribution for the specified triplet """
+        """ 
+        Returns
+        =======
+        The triplet, group, key and images for the specified triplet: dict
+        """
         id_col = "ID" if "ID" in self.df.columns else "Path"
         
         if type(key) == int:
