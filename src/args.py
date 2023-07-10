@@ -73,7 +73,7 @@ class CustomParser():
       #### Only used with plot == 'region
       self.parser.add_argument("--plot_threshold", "--plot-threshold", default=None,
         help="Threshold applied to ouput scores in 'region' plots; if None, no threshold is applied.")
-      self.parser.add_argument("--n_per_group", '--n-per-group', default=1,
+      self.parser.add_argument("--n_per_group", '--n-per-group', default=1, type=int,
         help="Number of decision regions to plot per group if plot = 'region'.")
   
   def parse_args(self):
