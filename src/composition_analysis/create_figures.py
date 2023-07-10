@@ -1,4 +1,4 @@
-from matplotlib import rcParams, ticker, patches, cm
+from matplotlib import rcParams, ticker, patches, cm, colors
 from matplotlib.cm import ScalarMappable
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -153,7 +153,7 @@ def plot_figures(df, plot:str, save_loc:str, tasks:dict, palette:str|dict|list='
     else:
         plt.close('all')
 
-def plot_decision_regions(filepath:str, save_loc:str, n_per_group:int=None, threshold:int=1, palette='Set2'):
+def plot_decision_regions(filepath:str, save_loc:str, n_per_group:int=None, threshold:int=1, palette:str='Set2'):
     """ Plot decision regions from decision region files.
 
     Notes
@@ -178,9 +178,13 @@ def plot_decision_regions(filepath:str, save_loc:str, n_per_group:int=None, thre
         Plot figure.
     """
     file = h5py.File(filepath, 'r')
-    norm = plt.Normalize(0,1)
-    if threshold is not None and type(palette) in {dict, list}:
-        raise ValueError("A matplotlib colormap name must be passed if a threshold is used when plotting 'region'.")
+    if threshold is None:
+        norm = plt.Normalize(0,1)
+    else:
+        bounds = [0, threshold, 1]
+        norm = colors.BoundaryNorm(bounds, palette.N)
+    if type(palette) in {dict, list}:
+        raise ValueError("A matplotlib colormap name must be  used when plotting 'region'.")
     if type(palette) == str:
         palette = plt.get_cmap(palette) 
     fig, axes = plt.subplots(len(file.keys()), n_per_group, squeeze=False, figsize=(n_per_group*3, len(file.keys())*2))
@@ -191,16 +195,10 @@ def plot_decision_regions(filepath:str, save_loc:str, n_per_group:int=None, thre
                 continue
             coordinates = file[group][dist+"__coordinates"]
             distribution = file[group][dist]
-            if threshold is None:
-                axes[i,ii].scatter(coordinates[:,0], coordinates[:,1], c=distribution, norm=norm, cmap=palette)
-            else:
-                thresholded_distribution = np.where(distribution[:] > threshold, 1, 0)
-                axes[i,ii].scatter(coordinates[:,0], coordinates[:,1], c=thresholded_distribution, norm=norm)
+            axes[i,ii].scatter(coordinates[:,0], coordinates[:,1], c=distribution, norm=norm, cmap=palette)
             axes[i, ii].set_title(f"{group} ({ii})")
             axes[i,ii].tick_params(bottom=False, labelbottom=False, left=False, labelleft=False)
-    if threshold is None:
-        cbar = fig.colorbar(ScalarMappable(norm=norm, cmap=palette), ax=axes[:,:], shrink=0.8, label='Score')
-        # cbar.ax.set_title("Score")
+    cbar = fig.colorbar(ScalarMappable(norm=norm, cmap=palette), ax=axes[:,:], shrink=0.8, label='Score', spacing='proportional')
     return fig
             
 
