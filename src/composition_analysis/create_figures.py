@@ -65,7 +65,6 @@ def plot_figures(df, plot:str, save_loc:str, tasks:dict, palette:str|dict|list='
         except:
             raise ValueError(f"Unrecognized color map {palette}")
     if plot == 'region':
-        print("Palette type: ", type(palette))
         fig = plot_decision_regions(filepath=filepath, save_loc=save_loc, n_per_group=n_per_group, threshold=threshold, palette=palette)
     else:
         width=0.5

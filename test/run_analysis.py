@@ -7,7 +7,7 @@ from src.composition_analysis import plot_figures, get_compositions, save_compos
 def run_analysis(args):
     """ Calculates decision region compositions and plots results """
     decision_region_file = f"{args.save_loc}/{args.save_name}"
-    decision_region_compositions = get_compositions(decision_region_file, tasks=args.tasks, output_function=output_functions[args.out_function], aggregate=args.aggregate)
+    decision_region_compositions = get_compositions(decision_region_file, tasks=args.tasks, output_function=output_functions[args.out_function], aggregate=args.aggregate, thresholds=args.threshold)
     save_compositions(compositions=decision_region_compositions, save_loc=args.save_loc, overwrite=args.overwrite, aggregate=args.aggregate)
     if args.plot:
         plot_figures(df=decision_region_compositions, plot=args.plot, save_loc=args.save_loc, tasks=args.tasks, palette=args.plot_palette,

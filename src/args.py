@@ -17,10 +17,10 @@ class CustomParser():
   Raises
   ======
   ValueError
-    mode value is not 'Analyze', 'Complete', or 'Generate'.
+    mode value is not 'Analyze', 'Complete', 'Generate', or 'Plot'.
   """
   def __init__(self, mode:str):
-    modes = {'Analyze','Complete', 'Generate'}
+    modes = {'Analyze','Complete', 'Generate', 'Plot'}
     if mode not in modes:
       raise ValueError(f"mode must be one of {modes}")
     self.mode = mode
@@ -29,24 +29,26 @@ class CustomParser():
     self.parser.add_argument('--save_loc', '--save-loc', type=str, required=True)
     self.parser.add_argument('--save_name', '--save-name', type=str, default='decision_regions')
     self.parser.add_argument('--classes', nargs="+", required=True)
-    self.parser.add_argument('--class_order', default='0,1', choices=['0,1','1,0'])
-    self.parser.add_argument('--subgroup_attributes', nargs="+", required=True)
+    self.parser.add_argument('--class_order', '--class-order', default='0,1', choices=['0,1','1,0'])
+    self.parser.add_argument('--subgroup_attributes','--subgroup-attributes', nargs="+", required=True)
     self.parser.add_argument('--overwrite', action='store_true', default=False) # NOTE: will delete all data in hdf5 file at beginning of running if generating
     if mode == 'Generate' or mode == 'Complete':
       ## Arguments used to generate and evaluate vicinal distributions ------------------------------------------
-      self.parser.add_argument('--model_file', type=str, required=True)
-      self.parser.add_argument('--data_csv', type=str, required=True)
-      self.parser.add_argument('--batch_size', type=int, default=5)
+      self.parser.add_argument('--model_file','--model-file', type=str, required=True)
+      self.parser.add_argument('--data_csv','--data-csv', type=str, required=True)
+      self.parser.add_argument('--batch_size','--batch-size', type=int, default=5)
       self.parser.add_argument('--steps', type=int, default=5, 
         help="Number of 'steps' to take between images in generating the vicinal distribution")
       self.parser.add_argument("--shape", type=str, default='triangle', choices=['triangle','rectangle'],
         help="Shape of generated decision regions.")
-      self.parser.add_argument('--n_triplets', type=int, default=5)
-      self.parser.add_argument('--img_rel_path', type=str, default=None)
+      self.parser.add_argument('--n_triplets','--n-triplets', type=int, default=5)
+      self.parser.add_argument('--img_rel_path','--img-rel-path', type=str, default=None)
     if mode == 'Analyze' or mode == 'Complete':
       ## Arguments used to perform decision region analysis -----------------------------------------------------
-      self.parser.add_argument('--out_function', type=str, default=None)
+      self.parser.add_argument('--out_function','--out-function', type=str, default=None)
       self.parser.add_argument('--aggregate', '--agg', default=None, choices=['group', 'class', 'all'])
+      self.parser.add_argument('--threshold', default=0.5, type=float,
+        help="The treshold applied during composition analysis; does not affect region plots")
       ### Plotting arguments
       self.parser.add_argument('--plot', default=None, choices=['composition', 'performance', 'region'])
       self.parser.add_argument('--show', default=False, action='store_true')
