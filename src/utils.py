@@ -20,6 +20,12 @@ def progressbar(iterable, prefix="", out=sys.stdout, sym='#', length=60):
     print(f"[{prefix}{sym*num}] {num}/{num}", end='\r',file=out,flush=True)
     print("", file=out,flush=True)
 
-        
-
+def verify_type_or_none(argument, arg_type, arg_name:str):
+    none_options = {None, 'None', 'none'}
+    if argument in none_options:
+        return None
+    try:
+        return arg_type(argument)
+    except:
+        raise ValueError(f"Unrecognized value {argument} for {arg_name}; must be type {arg_type} or None.")
         
