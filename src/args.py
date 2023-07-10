@@ -17,10 +17,10 @@ class CustomParser():
   Raises
   ======
   ValueError
-    mode value is not 'Analyze', 'Complete', 'Generate', or 'Plot'.
+    mode value is not 'Analyze', 'Complete' or 'Generate'.
   """
   def __init__(self, mode:str):
-    modes = {'Analyze','Complete', 'Generate', 'Plot'}
+    modes = {'Analyze','Complete', 'Generate'}
     if mode not in modes:
       raise ValueError(f"mode must be one of {modes}")
     self.mode = mode
@@ -44,18 +44,28 @@ class CustomParser():
       self.parser.add_argument('--n_triplets','--n-triplets', type=int, default=5)
       self.parser.add_argument('--img_rel_path','--img-rel-path', type=str, default=None)
     if mode == 'Analyze' or mode == 'Complete':
-      ## Arguments used to perform decision region analysis -----------------------------------------------------
-      self.parser.add_argument('--out_function','--out-function', type=str, default=None)
-      self.parser.add_argument('--aggregate', '--agg', default=None, choices=['group', 'class', 'all'])
+      ## Arguments used to perform decision region analysis and plotting -----------------------------------------------------
+      self.parser.add_argument('--out_function','--out-function', type=str, default=None, 
+        help="The function to be applied to model output scores; see src/utils.py for options.")
+      self.parser.add_argument('--aggregate', '--agg', default=None, choices=['group', 'class', 'all'],
+        help="How to aggregate composition analysis; options: class, group, all.")
       self.parser.add_argument('--threshold', default=0.5, type=float,
         help="The treshold applied during composition analysis; does not affect region plots")
-      ### Plotting arguments
-      self.parser.add_argument('--plot', default=None, choices=['composition', 'performance', 'region'])
-      self.parser.add_argument('--show', default=False, action='store_true')
-      self.parser.add_argument('--display-only', dest='save_plot', default=True, action='store_false') # Don't save plots (+ other outputs?)
-      self.parser.add_argument('--hide-percent', dest='show_percent', default=True, action='store_false')
-      self.parser.add_argument('--hide-errorbar', dest='show_errorbar', default=True, action='store_false')
-      self.parser.add_argument("--save_dpi", "--save-dpi", default=800, type=int, help="dpi used when saving summary plots.")
+      ### Plotting settings
+      self.parser.add_argument("--plot_only", "--plot-only", action='store_true', default=False,
+        help="Pass to not save composition analysis files.")
+      self.parser.add_argument('--plot', default=None, choices=['composition', 'performance', 'region'],
+        help="The type of plot to generate")
+      self.parser.add_argument('--show', default=False, action='store_true',
+        help="Pass to show plots.")
+      self.parser.add_argument('--display-only', dest='save_plot', default=True, action='store_false',
+        help="Pass to not save plots.") 
+      self.parser.add_argument('--hide-percent', dest='show_percent', default=True, action='store_false',
+        help="Pass to not include percent text on composition/performance plots")
+      self.parser.add_argument('--hide-errorbar', dest='show_errorbar', default=True, action='store_false',
+        help="Pass to not include errorbars on composition/performance plots")
+      self.parser.add_argument("--save_dpi", "--save-dpi", default=800, type=int,
+        help="dpi used when saving summary plots.")
       self.parser.add_argument("--plot_output_format","--plot-output-format", default=[], nargs='+',
         help="Output formats in which the plots should be saved.")
       self.parser.add_argument("--plot_palette",'--plot-palette', type=str, default="Set2",
@@ -63,8 +73,8 @@ class CustomParser():
       #### Only used with plot == 'region
       self.parser.add_argument("--plot_threshold", "--plot-threshold", default=None,
         help="Threshold applied to ouput scores in 'region' plots; if None, no threshold is applied.")
-      self.parser.add_argument("--n_per_group", '--n-per-group', default=None,
-        help="Number of decision regions to plot per group if plot = 'region'; if None, all decision regions are plotted.")
+      self.parser.add_argument("--n_per_group", '--n-per-group', default=1,
+        help="Number of decision regions to plot per group if plot = 'region'.")
   
   def parse_args(self):
     args = self.parser.parse_args()
@@ -78,7 +88,6 @@ class CustomParser():
       args.tasks[c] = {float(args.class_order[i]):args.classes[c][i] for i in range(len(args.classes[c]))}
     if self.mode != 'Generate':
       args.plot_threshold = verify_type_or_none(args.plot_threshold, float, arg_name="--plot-threshold/--plot_threshold")
-      args.n_per_group = verify_type_or_none(args.n_per_group, int, "--n-per-group/--n_per_group")
       args.plot_output_format = list(set(args.plot_output_format))
       if len(args.plot_output_format) == 0:
         args.plot_output_format = ['png']

@@ -3,7 +3,7 @@ import numpy as np
 import h5py
 import os
 
-def determine_composition(decision_region:h5py.Dataset, tasks:dict, output_function:str=None, thresholds:list=[0.5])->pd.DataFrame:
+def determine_composition(decision_region:h5py.Dataset, tasks:dict, output_function:str=None, thresholds:list|float=[0.5])->pd.DataFrame:
     """ Determine the composition of an individual decision region.
     
     Arguments
@@ -23,6 +23,8 @@ def determine_composition(decision_region:h5py.Dataset, tasks:dict, output_funct
         Decision region composition.
     
     """   
+    if type(thresholds) == float:
+        thresholds = [thresholds]
     DR = decision_region[:]
     if output_function is not None:
         DR = output_function(DR)

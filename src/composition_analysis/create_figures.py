@@ -46,9 +46,9 @@ def plot_figures(df, plot:str, save_loc:str, tasks:dict, palette:str|dict|list='
     """
     # process arguments
     plot_options = {'composition','performance', 'region'}
-    aggregate_options = {'all','group','class'}
+    aggregate_options = {'all','group','class', None}
     if plot not in plot_options:
-        raise ValueError(f"plot must be in {plot_options}, not {plot}")
+        raise ValueError(f"aggregate must be in {plot_options}, not {plot}")
     if aggregate not in aggregate_options:
         raise ValueError(f"plot must be in {aggregate_options}, not {aggregate}")
     if aggregate == 'all' and plot == 'performance':
@@ -153,14 +153,13 @@ def plot_figures(df, plot:str, save_loc:str, tasks:dict, palette:str|dict|list='
     else:
         plt.close('all')
 
-def plot_decision_regions(filepath:str, save_loc:str, n_per_group:int=None, threshold:int=None, palette='Set2'):
+def plot_decision_regions(filepath:str, save_loc:str, n_per_group:int=None, threshold:int=1, palette='Set2'):
     """ Plot decision regions from decision region files.
 
     Notes
     =====
     TODO: 
     - threshold support: legend + palette
-    - n_per_group == None
     
     Arguments
     =========
@@ -184,8 +183,6 @@ def plot_decision_regions(filepath:str, save_loc:str, n_per_group:int=None, thre
         raise ValueError("A matplotlib colormap name must be passed if a threshold is used when plotting 'region'.")
     if type(palette) == str:
         palette = plt.get_cmap(palette) 
-    if n_per_group is None:
-        raise NotImplementedError() # get number of distributions in each group...
     fig, axes = plt.subplots(len(file.keys()), n_per_group, squeeze=False, figsize=(n_per_group*3, len(file.keys())*2))
     for i, group in enumerate(file.keys()):
         vicinal_results = [ds for ds in file[group].keys() if not ds.endswith("__coordinates")]
