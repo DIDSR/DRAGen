@@ -23,6 +23,7 @@ class CustomParser():
     modes = {'Analyze','Complete', 'Generate'}
     if mode not in modes:
       raise ValueError(f"mode must be one of {modes}")
+    self.mode = mode
     self.parser = ArgumentParser()
     # # Arguments that are always used
     self.parser.add_argument('--save_loc', '--save-loc', type=str, required=True)
@@ -71,14 +72,15 @@ class CustomParser():
     args.tasks = {}
     for c in args.classes:
       args.tasks[c] = {float(args.class_order[i]):args.classes[c][i] for i in range(len(args.classes[c]))}
-    args.plot_threshold = verify_type_or_none(args.plot_threshold, float, arg_name="--plot-threshold/--plot_threshold")
-    args.n_per_group = verify_type_or_none(args.n_per_group, int, "--n-per-group/--n_per_group")
-    args.plot_output_format = list(set(args.plot_output_format))
-    if len(args.plot_output_format) == 0:
-      args.plot_output_format = ['png']
-    if ":" in args.plot_palette:
-      args.plot_palette = {c.split(":")[0]:c.split(":")[-1] for c in args.plot_palette.split(",")}
-    elif ',' in args.plot_palette:
-      args.plot_palette = args.plot_palette.split(",")
+    if self.mode != 'Generate':
+      args.plot_threshold = verify_type_or_none(args.plot_threshold, float, arg_name="--plot-threshold/--plot_threshold")
+      args.n_per_group = verify_type_or_none(args.n_per_group, int, "--n-per-group/--n_per_group")
+      args.plot_output_format = list(set(args.plot_output_format))
+      if len(args.plot_output_format) == 0:
+        args.plot_output_format = ['png']
+      if ":" in args.plot_palette:
+        args.plot_palette = {c.split(":")[0]:c.split(":")[-1] for c in args.plot_palette.split(",")}
+      elif ',' in args.plot_palette:
+        args.plot_palette = args.plot_palette.split(",")
     return args
   
