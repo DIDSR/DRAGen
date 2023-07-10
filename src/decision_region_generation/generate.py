@@ -11,10 +11,31 @@ import h5py
 import os
 
 def generate_decision_regions(input_csv_path:str, onnx_model_path:str, output_path:str, batch_size:int, manager_kwargs={}, vicinal_kwargs={}, overwrite=True):
-    """ Uses the provided samples to generate vicinal distributions and evaluate """
+    """ 
+    Generates, evaluates and saves decision regions.
+
+    Parameters
+    ==========
+    input_csv_path
+        File path to the input csv; passed to :func:`load_attributes <src.data_input.load_attributes.load_attributes>`
+    onnx_model_path
+        Onnx model file path.
+    output_path
+        Name and path for output file.
+    batch_size
+        Batch size for :class:'plane_loader <src.decision_region_generation.vicinial_distribution.plane_loader>'
+    manager_kwargs : dict
+        Keyword arguments to be passed to :class:`TripletManager <src.decision_region_generation.triplet_manager.TripletManager>`
+    vicinal_kwargs : dict
+        Keyword arguments to be passed to :class:'plane_dataset <src.decision_region_generation.vicinial_distribution.plane_dataset>'
+    overwrite : bool
+        If True, will overwrite existing file at output_path
+    """
     # setup ------------------------------------------------------------------------------------------------------------------------
+    print("Loading model...",end='')
     model = onnx.load_model(onnx_model_path)
     onnx.checker.check_model(model) # check for valid model
+    print("Complete")
     ort_session = ort.InferenceSession(onnx_model_path, providers=ort.get_available_providers())
     # determine the expected numpy dtype for inputs to the model
     for input in model.graph.input:
@@ -26,7 +47,7 @@ def generate_decision_regions(input_csv_path:str, onnx_model_path:str, output_pa
     else:
         out_file = h5py.File(output_path, 'a')
     if len(out_file.keys()) != 0:
-        print("Resuming Decision Region Generation")
+        print("Resuming decision region generation")
     for triplet in progressbar(manager): # iterate through triplets, generate vicinal, eval, save -----------------------------------------------
         group_name = f"group_{triplet['group']}"
         decision_region_name = f"decision_region_{triplet['key']}"
@@ -40,12 +61,16 @@ def generate_decision_regions(input_csv_path:str, onnx_model_path:str, output_pa
             continue
         vicinal_dist = plane_dataset(*triplet['images'],**vicinal_kwargs)
         vd_outputs = []
+        vd_coords = []
         loader = plane_dataloader(vicinal_dist,batch_size=batch_size, output_dtype=np_dtype)
-        # TODO: there must be a better way to do this, look into hdf5 datasets more
-        for batch, idx in loader:
+        for batch, idx, coords in loader:
             logits, emb = ort_session.run(None, {'input':batch})
             vd_outputs += logits.tolist()
+            vd_coords += [coords]
         vd_outputs = np.concatenate(vd_outputs)
+        vd_coords = np.array(np.concatenate(vd_coords))
         dist_group = group.create_dataset(decision_region_name, data=vd_outputs) #specific vicinal distribution
         dist_group.attrs.create('triplet',triplet['triplet']) # save the file paths to the triplet images
+        dist_coord_group = group.create_dataset(decision_region_name + "__coordinates", data=vd_coords)
+    print(f"Decision region generation complete; output file: {output_path}")
         

@@ -157,6 +157,7 @@ class plane_dataloader():
     def __iter__(self):
         batch = [0] * self.batch_size
         batch_idxs = [0] * self.batch_size
+        batch_coords = [0] * self.batch_size
         idx_in_batch = 0
         for idx in self._iterator:
             if self._channel_idx == self._out_channel_idx:
@@ -164,17 +165,19 @@ class plane_dataloader():
             else:
                 batch[idx_in_batch] = np.moveaxis(self.dataset[idx],self._channel_idx, self._out_channel_idx)
             batch_idxs[idx_in_batch] = idx
+            batch_coords[idx_in_batch] = self.dataset.get_coords(idx)
             idx_in_batch += 1
             if idx_in_batch == self.batch_size:
                 if self.output_dtype is None:
-                    yield np.stack(batch), batch_idxs
+                    yield np.stack(batch), batch_idxs, batch_coords
                 else:
-                    yield np.stack(batch).astype(self.output_dtype), batch_idxs
+                    yield np.stack(batch).astype(self.output_dtype), batch_idxs, batch_coords
                 idx_in_batch = 0
                 batch = [0] * self.batch_size
                 batch_idxs = [0] * self.batch_size
+                batch_coords = [0] * self.batch_size
         if idx_in_batch > 0:
             if self.output_dtype is None:
-                yield np.stack(batch[:idx_in_batch]), batch_idxs[:idx_in_batch]      
+                yield np.stack(batch[:idx_in_batch]), batch_idxs[:idx_in_batch], batch_coords[:idx_in_batch]    
             else:
-                yield np.stack(batch[:idx_in_batch]).astype(self.output_dtype), batch_idxs[:idx_in_batch]      
+                yield np.stack(batch[:idx_in_batch]).astype(self.output_dtype), batch_idxs[:idx_in_batch], batch_coords[:idx_in_batch]     
