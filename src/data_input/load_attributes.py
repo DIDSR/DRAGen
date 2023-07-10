@@ -4,30 +4,32 @@ import pandas as pd
 import numpy as np
 import itertools
 import os
+from typing import Optional
 
 # TODO: better term for 'missing_information' argument
 
-def load_attributes(csv_file, subgroup_information:dict, image_path_column="Path", id_column=None, missing_information='raise', info_format='categorical', rel_path=None, n_processes=None):
+def load_attributes(csv_file:str, subgroup_information:dict, image_path_column:str="Path", id_column:Optional[str]=None, missing_information:str='raise', 
+                    info_format:str='categorical', rel_path:Optional[str]=None, n_processes:Optional[int]=None)->pd.DataFrame:
   """
   Loads image filepaths and patient attributes from provided csv file.
   
   Parameters
   ----------
-  csv_file : :obj:`str`
+  csv_file
       Filepath to summary csv.
-  subgroup_information : :obj:`dict`
-      Subgroup attributes in the format Group:[subgroups] (ex. {"Sex":["Male","Female"]}).
-  image_path_column : :obj:`str`, `optional`
+  subgroup_information
+      Subgroup attributes in the format Group:[subgroups] (ex. ``{"Sex":["Male","Female"]}``).
+  image_path_column
       Name of column in csv_file listing image filepaths.
-  id_column : :obj:`str` or :obj:`None`, `optional`
+  id_column
       Name of columns in csv_file listing unique patient/sample identifiers.
-  missing_information : :obj:`str`, `optional`
+  missing_information
       How to handle samples missing information; 'raise': raise an exception, 'remove': remove samples missing information
-  info_format : :obj:`str`, `optional`
+  info_format
       Format to return patient information in.
-  rel_path : :obj:`str` or :obj:`None`, `optional`
+  rel_path
       Declare a relative path for image file paths.
-  n_processes : :obj:`int` or :obj:`None`, `optional`
+  n_processes
       Number of processes to use while checking image file paths, if :obj:`None`, uses number of available cores.
   
   Returns
@@ -67,9 +69,27 @@ def load_attributes(csv_file, subgroup_information:dict, image_path_column="Path
     df = df.rename(columns={id_column:"ID"})
   return df
   
-def check_img_paths(img_paths:np.array, n_processes=None): # TODO: n_processes as an argument
+def check_img_paths(img_paths:np.array, n_processes:Optional[int]=None): # TODO: n_processes as an argument
   """
-  Checks image file paths to ensure (1) file paths exist, (2) program has read access, and (3) file is in an image file format. 
+  Checks image file paths to ensure that file paths exist, the program has read access, and the files are in an image file format. 
+
+  Arguments
+  =========
+  img_paths
+    File paths of the sample images.
+  n_processes
+    Number of processes to be used for `multiprocessing.Pool`, if None, uses all available.
+
+  Returns
+  =======
+  numpy.array
+    Array of usable file paths.
+
+  Raises
+  ======
+  Exception
+    Raises an exception if not all of the provided file paths are valid.
+
   """
   pool = Pool(n_processes)
   # (1) + (2) # os.access returns False if file does not exist

@@ -1,23 +1,29 @@
 from PIL import Image
 import numpy as np
+from typing import Optional
 
-def load_image(image_path, mode="RGB", scale=None):
+def load_image(image_path, mode:str="RGB", scale:Optional[int|tuple[int]]=None)->np.array:
   """
-  Loads image in the specified image mode, returns numpy array
+  Loads image in the specified image mode.
   
   Parameters
   ----------
-  image_path : :obj:`str`
+  image_path
       File path to image.
-  mode : :obj:`str`
-      PIL.Image mode to use; default='RGB'.
-  scale : :obj:`int`, :obj:`tuple`, or :obj:`None`, `optional`
-      Scale to resize image; if :obj:`int`, will resize to (scale, scale); if :obj:`None`, will not resize.
+  mode
+      [PIL.Image mode](https://pillow.readthedocs.io/en/stable/handbook/concepts.html#modes) to use.
+  scale
+      Scale to resize image; if ``int``, will resize to (scale, scale); if ``None``, will not resize.
   
   Returns
   -------
   numpy.array
       Image array.
+
+  Raises
+  ======
+  Exception
+    The provided scale is not in a supported format
   """
   img = Image.open(image_path)
   if img.mode != mode:
