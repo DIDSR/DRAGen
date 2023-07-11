@@ -11,7 +11,7 @@ def load_image(image_path, mode:str="RGB", scale:Optional[int|tuple[int]]=None)-
   image_path
       File path to image.
   mode
-      [PIL.Image mode](https://pillow.readthedocs.io/en/stable/handbook/concepts.html#modes) to use.
+      `PIL.Image mode <https://pillow.readthedocs.io/en/stable/handbook/concepts.html#modes>`_ to use.
   scale
       Scale to resize image; if ``int``, will resize to (scale, scale); if ``None``, will not resize.
   
