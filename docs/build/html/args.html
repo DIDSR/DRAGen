@@ -33,7 +33,7 @@
             
   <section id="command-line-arguments">
 <h1>Command Line Arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this heading">¶</a></h1>
-<p>Command line arguments to be used with test/analysis and test/main</p>
+<p>Command line arguments to be used with the files in the <code class="docutils literal notranslate"><span class="pre">test/</span></code> directory.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.args.CustomParser">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.args.</span></span><span class="sig-name descname"><span class="pre">CustomParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.args.CustomParser" title="Permalink to this definition">¶</a></dt>
@@ -43,7 +43,7 @@
 <dd class="field-odd"><p><strong>mode</strong> (<em>str</em>) – The purpose for which the parser is being created; must be ‘Analyze’, ‘Complete’, or ‘Generate’.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – mode value is not ‘Analyze’, ‘Complete’, or ‘Generate’.</p>
+<dd class="field-even"><p><strong>ValueError</strong> – mode value is not ‘Analyze’, ‘Complete’ or ‘Generate’.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -52,37 +52,50 @@
 <h2>General Arguments<a class="headerlink" href="#general-arguments" title="Permalink to this heading">¶</a></h2>
 <p>Arguments used during both the generation and analysis of decision regions.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--save_loc</span></code>: directory in which to save program outputs.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--save_name</span></code>: name to use for the created decision region hdf5 file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--save_loc/--save-loc</span></code>: directory in which to save program outputs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--save_name/--save-name</span></code>: name to use for the created decision region hdf5 file.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--classes</span></code>: model output classes, in format category:option1,option2 (ex. COVID_positive:Yes,No).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--class_order</span></code>: [TODO]</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--subgroup_attributes</span></code>: attributes to be used in addition to <cite>–classes</cite> to group samples and analysis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--class_order</span></code>: used to designate which class corresponds with a model output of 0 or 1; default: 0,1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--subgroup_attributes</span></code>: attributes to be used in addition to <cite>–classes</cite> to group samples and analysis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--overwrite</span></code>: if passed, previously generated hdf5 or analysis files may be overwritten.</p></li>
 </ul>
 </section>
 <section id="generation-arguments">
 <h2>Generation Arguments<a class="headerlink" href="#generation-arguments" title="Permalink to this heading">¶</a></h2>
 <p>Arguments used exclusivly during the generation of decision regions.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--model_file</span></code>: file path to the onnx model file.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--data_csv</span></code>: csv file which pairs sample ids with image file paths and class and attribute information.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--batch_size</span></code>: batch size to be used with the data loader</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--overwrite</span></code>: [TODO]</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--steps</span></code>: [TODO]</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--n_triplets</span></code>: [TODO]</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--img_rel_path</span></code>: the common directory for the image file paths, include if the file paths in <code class="docutils literal notranslate"><span class="pre">--data_csv</span></code> are relative.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--model_file/--model-file</span></code>: file path to the onnx model file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--data_csv/--data-csv</span></code>: csv file which pairs sample ids with image file paths and class and attribute information.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--batch_size/--batch-size</span></code>: batch size to be used with the data loader.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--shape</span></code>: the shape of the generated vicinal distributions; default: triangle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--steps</span></code>: the number of steps to take between samples in the triplet when creating the vicinal distribution. With –shape=rectangle, approximately step^2 virtual samples will be generated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--n_triplets/--n-triplets</span></code>: the number of triplets to generate for each group.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--img_rel_path/--img-rel-path</span></code>: the common directory for the image file paths, include if the file paths in <code class="docutils literal notranslate"><span class="pre">--data_csv</span></code> are relative.</p></li>
 </ul>
 </section>
 <section id="analysis-arguments">
 <h2>Analysis Arguments<a class="headerlink" href="#analysis-arguments" title="Permalink to this heading">¶</a></h2>
-<p>Arguments used exclusivly during the analysis of decision regions.</p>
+<p>Arguments used exclusivly during the analysis and plotting of decision regions.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--out_function</span></code>: [TODO]</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--aggregate/--agg</span></code>: [TODO]</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--plot</span></code>: [TODO]</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--show</span></code>: [TODO]</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--display-only</span></code>: [TODO]</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--hide-percent</span></code>: [TODO]</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--hide-errorbar</span></code>: [TODO]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--out_function</span></code>: the function to be applied to model output scores; see <cite>utilities &lt;src/utils.py&gt;</cite> for options.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--aggregate/--agg</span></code>: how to aggregate composition analysis; options: class, group, all.</dt><dd><p>Note: decision region compositions are always calculated by triplet before being aggregating to ensure that each triplet has the same impact on the calculated compositiond despite slight variations in the number of virtual samples between triplets’ decision regions.</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--threshold</span></code>: the treshold applied during composition analysis; does not affect region plots.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--plot_only/--plot-only</span></code>: pass to not save composition analysis files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--plot</span></code>: type of plot to generate; options: composition, performance, region; no plots will be generated if argument is not passed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--show</span></code>: pass to show plots.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--display-only</span></code>: pass to not save plots.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--hide-percent</span></code>: pass to not include percent text on composition/performance plots.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--hide-errorbar</span></code>: pass to not include errorbars on composition/performance plots.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--save_dpi/--save-dpi</span></code>: dpi used when saving summary plots.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--plot_output_format/--plot-output-format</span></code>: Output formats in which the plots should be saved.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--plot_palette/--plot-palette</span></code>: color palette to be used during plotting, can be either a matplotlib colorpalette or a custom palette.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--plot_threshold/--plot-threshold</span></code>: threshold applied to ouput scores in ‘region’ plots; if None, no threshold is applied.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--n_per_group/--n-per-group</span></code>: number of decision regions to plot per group if plot = ‘region’.</p></li>
+<li></li>
 </ul>
 </section>
 </section>
@@ -94,11 +107,23 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 <h3><a href="index.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="index.html">RST: Decision Region Analysis</a></li>
 </ul>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="info.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#terminology">Terminology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src.html">Data Input</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src.html#decision-region-generation">Decision Region Generation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src.html#module-src.composition_analysis">Composition Analysis</a></li>
@@ -110,14 +135,7 @@
 </ul>
 </li>
 </ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="src.html" title="previous chapter">Data Input</a></li>
-  </ul></li>
-</ul>
-</div>
+
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -125,24 +143,14 @@
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2023, Alexis Burgon.
       
-      |
+      
+      
       Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       

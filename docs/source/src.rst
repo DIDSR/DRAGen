@@ -5,7 +5,6 @@ Data Input
    :members:
    :imported-members: 
 
-----
 
 Decision Region Generation
 ==========================
@@ -21,7 +20,6 @@ Decision Region Generation
 .. automodule:: src.decision_region_generation.vicinal_distribution
    :members: plane_dataset, plane_dataloader, get_plane
 
-----
 
 Composition Analysis
 ====================

@@ -16,7 +16,7 @@ bibliography: references.bib
 ---
 
 # Summary
-This RST can be used to analyze the region of the decision space surrounding a triplet of samples...
+This regulatory science tool (RST) can be used to characterize the decision space of a deep convolution neural network (DCNN) used for binary classification.
 # Statement of Need
-...
+Generalizability is the model's ability to maintain performance on samples beyond those used during model development. Current methods of evaluating model generalizability involve evaluating model performance on an independent test set.
 # References

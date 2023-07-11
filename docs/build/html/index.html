@@ -14,7 +14,7 @@
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Data Input" href="src.html" />
+    <link rel="next" title="Getting Started" href="info.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -33,20 +33,6 @@
             
   <section id="rst-decision-region-analysis">
 <h1>RST: Decision Region Analysis<a class="headerlink" href="#rst-decision-region-analysis" title="Permalink to this heading">¶</a></h1>
-<p>*Insert basic description of this RST here*</p>
-</section>
-<section id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
-<p>Three inputs are required for this RST:</p>
-<ol class="arabic simple">
-<li><p><strong>Trained Model:</strong> the model must be saved in onnx format. Information on how to convert your model to onnx format can be found at the <a class="reference external" href="https://github.com/onnx/tutorials#converting-to-onnx-format">onnx GitHub page</a>.</p></li>
-<li><p><strong>Images:</strong> Images can be saved in any format supported by PIL.</p></li>
-<li><p><strong>Input csv:</strong> A csv file which can be used to map the image paths to subgroup attributes.</p></li>
-</ol>
-<p>Examples of inputs and implementation can be found in [insert link to example folder].</p>
-<p>Scripts to generate and analyze decision regions can be found in the <code class="docutils literal notranslate"><span class="pre">test</span></code> folder,
-all arguments used to run these scripts are located in <code class="docutils literal notranslate"><span class="pre">src/args.py</span></code>.
-Example inputs are included in the <code class="docutils literal notranslate"><span class="pre">examples</span></code> folder.</p>
 </section>
 <section id="contents">
 <h1>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">¶</a></h1>
@@ -54,6 +40,8 @@ Example inputs are included in the <code class="docutils literal notranslate"><s
 </div>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#terminology">Terminology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src.html">Data Input</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="src.html#src.data_input.load_attributes"><code class="docutils literal notranslate"><span class="pre">load_attributes()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.html#src.data_input.load_image"><code class="docutils literal notranslate"><span class="pre">load_image()</span></code></a></li>
@@ -104,31 +92,6 @@ Example inputs are included in the <code class="docutils literal notranslate"><s
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><a href="#">Table of Contents</a></h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">RST: Decision Region Analysis</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="src.html">Data Input</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src.html#decision-region-generation">Decision Region Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src.html#module-src.composition_analysis">Composition Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="args.html">Command Line Arguments</a></li>
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="src.html" title="next chapter">Data Input</a></li>
-  </ul></li>
-</ul>
-</div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -139,14 +102,34 @@ Example inputs are included in the <code class="docutils literal notranslate"><s
     </div>
 </div>
 <script>document.getElementById('searchbox').style.display = "block"</script>
+<h3><a href="#">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RST: Decision Region Analysis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html#terminology">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.html">Data Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.html#decision-region-generation">Decision Region Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.html#module-src.composition_analysis">Composition Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="args.html">Command Line Arguments</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2023, Alexis Burgon.
       
-      |
+      
+      
       Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       

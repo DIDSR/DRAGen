@@ -7,7 +7,6 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'RST: Decision Region Analysis'
-copyright = '2023, Alexis Burgon'
 author = 'Alexis Burgon'
 
 import os
@@ -39,4 +38,5 @@ html_theme_options = {
   'github_user': 'DIDSR',
   'github_repo': 'RST_Decision_Region_Analysis'
 }
-html_sidebars = {'**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html']}
+html_show_copyright = False
+html_sidebars = {'**': ['searchbox.html', 'globaltoc.html',  'sourcelink.html']}
