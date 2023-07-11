@@ -1,24 +1,26 @@
-# Decision Region Analysis for Generalizability (DRAGen) of AI models: Estimating model generalizability in the case of cross-reactivity and population shift
-## Regulatory Science Tool
-Prediction model deployment of virtual images generated from vicinal distribution provides smooth decision region transitions between various subgroups. This RST is used to analyze the compositions of these decision regions for many subgroups to provide insight into the how well they are represented in the data and the discontinuity of subgroup decision regions leading to incorrect predictions.
+# Decision Region Analysis for Generalizability (DRAGen) of AI models
+This repository contains the implementation for the methodology in the paper "Decision region analysis to deconstruct the subgroup influence on ai/ml predictions". The paper is available at this [link](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12465/124651H/Decision-region-analysis-to-deconstruct-the-subgroup-influence-on-AI/10.1117/12.2653963.short).
 
-### Purpose
-Understanding an artificial intelligence (AI) model's ability to generalize to its target population is critical to ensure the safe and effective use of AI in medical devices. Traditional generalizability assessment relies on the availability of large, diverse data sets, which are difficult to obtain for medical imaging. We present an approach for enhanced generalizability assessment by examining the decision space beyond the available test set. 
+# Citation
+To cite our work:
 
-## Decision Region Analysis
-A model's decision space can be analyzed by mapping a change in the input to a change in the output. However, as deep convolutional neural networks (DCNN) are both feature extractors and classifiers, it is challenging to modify inputs in a way that is meaningful to both the model and the user.
+    A. Burgon, N. Petrick, G. Berkman Sahiner, et al., “Decision region analysis to deconstruct the subgroup influence on ai/ml predictions,” in Proc. of SPIE Vol, 12465, 124651H–1 (2023).
 
-In this RST, we present a decision region analysis approach which uses the creation of vicinal distributions of virtual images to better characterize the model's decision space, either overall or for individual subgroups.
+## Bibtex citation
+```
+    @inproceedings{burgon2023decision,
+  title={Decision region analysis to deconstruct the subgroup influence on AI/ML predictions},
+  author={Burgon, Alexis and Petrick, Nicholas and Sahiner, Berkman and Pennello, Gene and Samala, Ravi K},
+  booktitle={Society of Photo-Optical Instrumentation Engineers (SPIE) Conference Series},
+  volume={12465},
+  pages={124651H},
+  year={2023}
+}
+```
+# Introduction
+Understanding an artificial intelligence (AI) model's ability to generalize to its target population is critical to ensure the safe and effective use of AI in medical devices. Traditional generalizability assessment relies on the availability of large, diverse data sets, which are difficult to obtain for medical imaging. We present an approach for enhanced generalizability assessment by examining the decision space beyond the available test set.
 
-> **Virtual Image:** An image that was created by modifying existing image(s), rather than obtained through a typical image acquisition method.
+# Getting Started
+The documentation for this project is included in the [docs/build/html](https://github.com/DIDSR/RST_Decision_Region_Analysis/tree/main/docs/build/html) folder. To view the documentation, download a copy of this folder and open the file ``index.html``. 
 
-> **Vicinal Distribution:** The collection of virtual images created by linearly interpolating between a 'triplet' of three images.
-
-
----
-
-
-## References
-1. <a id="Somepalli"> G. Somepalli, L. Fowl, A. Bansal, et al., “Can neural nets learn the same model twice? investigating reproducibility and double descent from the decision boundary perspective,” Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 13699–13708 (2022). </a>
-
-2. <a id = "SPIE"> A. Burgon, N. Petrick, G. Berkman Sahiner, et al., “Decision region analysis to deconstruct the subgroup influence on ai/ml predictions,” in Proc. of SPIE Vol, 12465, 124651H–1 (2023). </a>
+An interactive example of how to use this repository can be found in the [example notebook](https://github.com/DIDSR/RST_Decision_Region_Analysis/blob/main/examples/example_implementation.ipynb)
