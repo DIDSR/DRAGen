@@ -1,5 +1,46 @@
 # Decision Region Analysis for Generalizability (DRAGen) of AI models
+
+**DRAGen is an AI/ML model agnostic approach to assess generalizability.**
+
+```mermaid
+graph LR;
+  A -----> E --> F
+  B --> D --> E
+  C ----> F --> G
+
+  style A fill:#913826,stroke:#1f1f1f,stroke-width:4px
+  style B fill:#913826,stroke:#1f1f1f,stroke-width:4px
+  style C fill:#913826,stroke:#1f1f1f,stroke-width:4px
+  subgraph 1 [Input]
+    direction LR
+    A(["Image Data"])
+    B{{"Attributes and\nclass labels"}}
+    C>"Binary classification model\n(onnx format)"]
+  end
+
+  style D fill:#2e426e,stroke:#1f1f1f,stroke-width:4px
+  style E fill:#2e426e,stroke:#1f1f1f,stroke-width:4px
+  subgraph 2 [Generation]
+    direction LR
+
+    D["Triplet\nSelection"]
+    E["virtual sample\ngeneration"]
+    
+  end
+  style F fill:#520d22,stroke:#1f1f1f,stroke-width:4px
+  F{"model\ninference"}
+
+  style G fill:#104a27,stroke:#1f1f1f,stroke-width:4px
+  subgraph 3 [Analysis]
+    G["Decision regions plots\nand composition"]
+  end
+```
+
+
 This repository contains the implementation for the methodology in the paper "Decision region analysis to deconstruct the subgroup influence on ai/ml predictions". The paper is available at this [link](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12465/124651H/Decision-region-analysis-to-deconstruct-the-subgroup-influence-on-AI/10.1117/12.2653963.short).
+
+## Additional References
+- [FDA Science Forum Poster](https://www.fda.gov/science-research/fda-science-forum/predicting-ai-model-behavior-unrepresented-subgroups-test-time-approach-increase-variability-finite)
 
 # Citation
 To cite our work:
@@ -26,6 +67,9 @@ A vicinal distribution of virtual images is created by linearly interpolating be
 The documentation for this project is included in the [docs/build/html](https://github.com/DIDSR/RST_Decision_Region_Analysis/tree/main/docs/build/html) folder. To view the documentation, download a copy of this folder and open the file ``index.html``. 
 
 An interactive example of how to use this repository can be found in the [example notebook](https://github.com/DIDSR/RST_Decision_Region_Analysis/blob/main/examples/example_implementation.ipynb)
+
+## Example Output
+![Example Output](examples/example_composition_plot.png)
 
 ## System Requirements
 ```
