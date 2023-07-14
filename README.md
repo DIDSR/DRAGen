@@ -36,6 +36,7 @@ graph LR;
   end
 ```
 
+<p style="text-align: center;"> Overview of the decision region generation and analysis process  </p>
 
 This repository contains the implementation for the methodology in the paper "Decision region analysis to deconstruct the subgroup influence on ai/ml predictions". The paper is available at this [link](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12465/124651H/Decision-region-analysis-to-deconstruct-the-subgroup-influence-on-AI/10.1117/12.2653963.short).
 
@@ -70,6 +71,8 @@ An interactive example of how to use this repository can be found in the [exampl
 
 ## Example Output
 ![Example Output](examples/example_composition_plot.png)
+
+<p style="text-align: center;">  Example decision region composition plot </p>
 
 ## System Requirements
 ```
