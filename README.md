@@ -13,7 +13,7 @@ graph LR;
   style C fill:#913826,stroke:#1f1f1f,stroke-width:4px
   subgraph 1 [Input]
     direction LR
-    A(["Image Data"])
+    A(["Image data"])
     B{{"Attributes and\nclass labels"}}
     C>"Binary classification model\n(onnx format)"]
   end
@@ -23,12 +23,12 @@ graph LR;
   subgraph 2 [Generation]
     direction LR
 
-    D["Triplet\nSelection"]
-    E["virtual sample\ngeneration"]
+    D["Triplet\nselection"]
+    E["Virtual sample\ngeneration"]
     
   end
-  style F fill:#520d22,stroke:#1f1f1f,stroke-width:4px
-  F{"model\ninference"}
+  style F fill:#520d3d,stroke:#1f1f1f,stroke-width:4px
+  F{"Model\ninference"}
 
   style G fill:#104a27,stroke:#1f1f1f,stroke-width:4px
   subgraph 3 [Analysis]
