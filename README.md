@@ -13,7 +13,7 @@ graph LR;
   style C fill:#913826,stroke:#1f1f1f,stroke-width:4px
   subgraph 1 [Input]
     direction LR
-    A(["Image Data"])
+    A(["Image data"])
     B{{"Attributes and\nclass labels"}}
     C>"Binary classification model\n(onnx format)"]
   end
@@ -23,12 +23,12 @@ graph LR;
   subgraph 2 [Generation]
     direction LR
 
-    D["Triplet\nSelection"]
-    E["virtual sample\ngeneration"]
+    D["Triplet\nselection"]
+    E["Virtual sample\ngeneration"]
     
   end
-  style F fill:#520d22,stroke:#1f1f1f,stroke-width:4px
-  F{"model\ninference"}
+  style F fill:#520d3d,stroke:#1f1f1f,stroke-width:4px
+  F{"Model\ninference"}
 
   style G fill:#104a27,stroke:#1f1f1f,stroke-width:4px
   subgraph 3 [Analysis]
@@ -48,7 +48,7 @@ This repository contains the implementation for the methodology in the paper "De
 # Citation
 To cite our work:
 
-    A. Burgon, N. Petrick, G. Berkman Sahiner, et al., “Decision region analysis to deconstruct the subgroup influence on ai/ml predictions,” in Proc. of SPIE Vol, 12465, 124651H–1 (2023).
+    A. Burgon, N. Petrick, B. Sahiner, G. Pennello, R. K. Samala, “Decision region analysis to deconstruct the subgroup influence on AI/ML predictions”, Proc. of SPIE, 12465, 124651H (2023). doi.org/10.1117/12.2653963
 
 ## Bibtex citation
 ```
