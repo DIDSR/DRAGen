@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>RST: Decision Region Analysis &#8212; RST: Decision Region Analysis  documentation</title>
+    <title>DRAGen &#8212; RST: Decision Region Analysis  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -14,7 +14,7 @@
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Getting Started" href="info.html" />
+    <link rel="next" title="Data Input" href="src.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -31,27 +31,45 @@
 
           <div class="body" role="main">
             
-  <section id="rst-decision-region-analysis">
-<h1>RST: Decision Region Analysis<a class="headerlink" href="#rst-decision-region-analysis" title="Permalink to this heading">¶</a></h1>
+  <section id="dragen">
+<h1>DRAGen<a class="headerlink" href="#dragen" title="Permalink to this heading">¶</a></h1>
+<p>Decsion Region Analysis for Generalizability (DRAGen) is a tool to analyze the decision space of an image classification model to increase understanding of the model’s generalizability. A model’s decision space maps a change in the input to a change in the model’s output. DRAGen utilizes triplets of image samples to generate vicinal distributions of virtual images, created by linearly interpolating between the triplet images. These virtual images increase the density of available samples in the decision space, which allows for characterization of the decision space beyond the original finite data set. This insight into the decision space composition indicates how the model is likely to behave on data distributions upon which the model cannot generalize well.</p>
+</section>
+<section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
+<p>Three inputs are required for this RST:</p>
+<ol class="arabic simple">
+<li><p><strong>Trained Model:</strong> the model must be saved in onnx format. Information on how to convert your model to onnx format can be found at the <a class="reference external" href="https://github.com/onnx/tutorials#converting-to-onnx-format">onnx GitHub page</a>.</p></li>
+<li><p><strong>Images:</strong> Images can be saved in any format supported by PIL.</p></li>
+<li><p><strong>Input csv:</strong> A csv file which can be used to map the image paths to subgroup attributes.</p></li>
+</ol>
+<p>Examples implementation can be found in the <a class="reference external" href="https://github.com/DIDSR/RST_Decision_Region_Analysis/tree/main/examples">examples folder</a>.</p>
+<p>Scripts to generate and analyze decision regions can be found in the <code class="docutils literal notranslate"><span class="pre">test</span></code> folder,
+all arguments used to run these scripts are located in <code class="docutils literal notranslate"><span class="pre">src/args.py</span></code>.
+Example inputs are included in the <code class="docutils literal notranslate"><span class="pre">examples</span></code> folder.</p>
+</section>
+<section id="terminology">
+<h1>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">class</span></code>: An attribute by which the model classifies images. Only binary classification models are currently supported.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subgroup</span> <span class="pre">attribute</span></code>: An attribute by which the model <em>does not</em> classify images, but can be used to group samples into subgroups.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decision</span> <span class="pre">region</span></code>: A portion of the decision space. The decision regions generated in this RST are the regions of the decision space near to a ‘triplet’ of sample images.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">virtual</span> <span class="pre">image</span></code>: An image that was created by modifying existing image(s), rather than obtained through a typical image acquisition method.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vicinal</span> <span class="pre">distribution</span></code>: The collection of virtual images created by linearly interpolating between a ‘triplet’ of three images.</p></li>
+</ul>
 </section>
 <section id="contents">
 <h1>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="info.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#terminology">Terminology</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DRAGen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src.html">Data Input</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="src.html#src.data_input.load_attributes"><code class="docutils literal notranslate"><span class="pre">load_attributes()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.html#src.data_input.load_image"><code class="docutils literal notranslate"><span class="pre">load_image()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="src.html#decision-region-generation">Decision Region Generation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.decision_region_generation.triplet_manager.TripletManager"><code class="docutils literal notranslate"><span class="pre">TripletManager</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="src.html#src.decision_region_generation.triplet_manager.TripletManager.__getitem__"><code class="docutils literal notranslate"><span class="pre">TripletManager.__getitem__()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#src.decision_region_generation.triplet_manager.TripletManager"><code class="docutils literal notranslate"><span class="pre">TripletManager</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.html#src.decision_region_generation.generate.generate_decision_regions"><code class="docutils literal notranslate"><span class="pre">generate_decision_regions()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.html#src.decision_region_generation.vicinal_distribution.get_plane"><code class="docutils literal notranslate"><span class="pre">get_plane()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.html#src.decision_region_generation.vicinal_distribution.plane_dataloader"><code class="docutils literal notranslate"><span class="pre">plane_dataloader</span></code></a></li>
@@ -104,11 +122,7 @@
 <script>document.getElementById('searchbox').style.display = "block"</script>
 <h3><a href="#">Table of Contents</a></h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">RST: Decision Region Analysis</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="info.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#terminology">Terminology</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DRAGen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src.html">Data Input</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src.html#decision-region-generation">Decision Region Generation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src.html#module-src.composition_analysis">Composition Analysis</a></li>
