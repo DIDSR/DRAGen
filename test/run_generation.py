@@ -10,7 +10,8 @@ def run_generation(args):
         'classes':args.classes,
         'subgroup_attributes':args.subgroup_attributes,
         'triplets_per_group':args.n_triplets,
-        'image_rel_path':args.img_rel_path
+        'image_rel_path':args.img_rel_path,
+        'random_seed':args.random_seed
     }
     vicinal_args = {
         'steps':args.steps,

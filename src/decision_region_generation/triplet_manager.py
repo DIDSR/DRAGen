@@ -27,7 +27,7 @@ class TripletManager():
     mix_classes : :obj:`bool`, `optional`
         If true, will not separate groups by class.
     """
-    def __init__(self, input_csv, classes, triplets_per_group, subgroup_attributes=None, image_rel_path=None, sample_id_column=None, mix_subgroups=False, mix_classes=False):
+    def __init__(self, input_csv, classes, triplets_per_group, subgroup_attributes=None, image_rel_path=None, sample_id_column=None, mix_subgroups=False, mix_classes=False, random_seed=None):
         self.input_csv = input_csv
         self.classes = classes
         self.triplets_per_group = triplets_per_group
@@ -36,6 +36,10 @@ class TripletManager():
         if self.subgroup_attributes is None:
             self.mix_subgroups = True
         self.mix_classes = mix_classes
+        self.random_seed = random_seed
+        print(f"random seed is {self.random_seed}")
+        if self.random_seed is not None:
+            random.seed(self.random_seed)
         self.sample_attributes = self._determine_attributes()
         self.groups = self._determine_groups()
         print(f"Created {len(self.groups)} groups:")

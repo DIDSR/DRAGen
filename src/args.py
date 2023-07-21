@@ -43,6 +43,7 @@ class CustomParser():
         help="Shape of generated decision regions.")
       self.parser.add_argument('--n_triplets','--n-triplets', type=int, default=5)
       self.parser.add_argument('--img_rel_path','--img-rel-path', type=str, default=None)
+      self.parser.add_argument("--random_seed","--random-seed","--random-state","--random_state", type=int, default=None)
     if mode == 'Analyze' or mode == 'Complete':
       ## Arguments used to perform decision region analysis and plotting -----------------------------------------------------
       self.parser.add_argument('--out_function','--out-function', type=str, default=None, 

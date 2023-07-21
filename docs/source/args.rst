@@ -26,6 +26,7 @@ Arguments used exclusivly during the generation of decision regions.
 * ``--steps``: the number of steps to take between samples in the triplet when creating the vicinal distribution. With --shape=rectangle, approximately step^2 virtual samples will be generated.
 * ``--n_triplets/--n-triplets``: the number of triplets to generate for each group.
 * ``--img_rel_path/--img-rel-path``: the common directory for the image file paths, include if the file paths in ``--data_csv`` are relative.
+* ``--random_seed/--random-seed/--random_state/--random-state``: the random state used during the selection of image triplets.
 
 Analysis Arguments
 ------------------
