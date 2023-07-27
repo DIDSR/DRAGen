@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Burgon"
+  given-names: "Alexis"
+  orcid: "https://orcid.org/0000-0002-2180-9082"
+- family-names: "Samala"
+  given-names: "Ravi"
+  orcid: "https://orcid.org/0000-0002-6661-4801"
+title: "DRAGen: Decision Region Analysis for Generalizability"
+date-released: 2023-07-27
+url: "https://github.com/DIDSR/RST_Decision_Region_Analysis"
