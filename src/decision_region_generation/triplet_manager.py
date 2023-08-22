@@ -4,6 +4,7 @@ from src.data_input import load_attributes, load_image
 from itertools import product, combinations
 import pandas as pd
 import random
+import math
 
 class TripletManager():
     """ Wrapper class to generate vicinal distributions for specified groups.
@@ -41,11 +42,11 @@ class TripletManager():
         if self.random_seed is not None:
             random.seed(self.random_seed)
         self.sample_attributes = self._determine_attributes()
+        self.df = load_attributes(self.input_csv, rel_path = image_rel_path, subgroup_information=self.sample_attributes, id_column=sample_id_column)
         self.groups = self._determine_groups()
         print(f"Created {len(self.groups)} groups:")
         for k, v in self.groups.items():
             print(f"\tgroup {k}: {v}")
-        self.df = load_attributes(self.input_csv, rel_path = image_rel_path, subgroup_information=self.sample_attributes, id_column=sample_id_column)
         print(f"Generating {self.triplets_per_group*len(self.groups)} triplets ({self.triplets_per_group}/group)")
         self.triplets = self._generate_triplets()
         self.triplet_df = self._get_triplet_df()
@@ -78,7 +79,19 @@ class TripletManager():
                 groups[i] = {}
                 for ii, k in enumerate(self.sample_attributes.keys()):
                     groups[i][k] = comb[ii]
-        return groups
+        # check that there are at least three patients in each group, if not, remove group
+        id_col = "ID" if "ID" in self.df.columns else "Path"
+        rm_groups = []
+        for i, g in groups.items():
+            temp_df = self.df.copy()
+            for k,v in g.items():
+                temp_df = temp_df[temp_df[k] == v]
+            ids = temp_df[id_col].unique()
+            if len(ids) < 3:
+                # print(f"Fewer than 3 samples found for group {i} ({g}), skipping group...")
+                rm_groups.append(g)
+        groups = [g for g in groups.values() if g not in rm_groups]
+        return {i:g for i,g in enumerate(groups)}
 
     def _generate_triplets(self):
         """ Generate triplets using sample IDs, or index if no ID is given"""
@@ -89,9 +102,17 @@ class TripletManager():
             for k,v in g.items():
                 temp_df = temp_df[temp_df[k] == v]
             ids = temp_df[id_col].unique()
+            if len(ids) < 3:
+                print(f"Fewer than 3 samples found for group {i} ({g}), skipping group...")
+                continue
             all_triplets = tuple(combinations(ids, 3))
             # select random indices from all_triplets -> each ID should be used approximately the same number of times (TODO: check)
-            triplet_indices = sorted(random.sample(range(len(all_triplets)), self.triplets_per_group))
+            n_potential_triplets = math.factorial(len(ids))/(math.factorial(3)*math.factorial(len(ids)-3))
+            if n_potential_triplets < self.triplets_per_group:
+                print(f"Cannot generate {self.triplets_per_group} triplets for group {i} ({g}), only {int(n_potential_triplets)} unique triplet(s) possible.")
+                triplet_indices = [idx for idx in range(len(all_triplets))]
+            else:
+                triplet_indices = sorted(random.sample(range(len(all_triplets)), self.triplets_per_group))                
             triplets[i] = {ii:t for ii,t in enumerate(tuple(all_triplets[ti] for ti in triplet_indices))}
         return triplets
 
