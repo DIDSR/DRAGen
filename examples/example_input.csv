@@ -1,0 +1,7 @@
+,patient_id,Path,sex,COVID_positive
+0,A758054,examples/example_images/A758054_0.jpeg,F,Yes
+1,A923527,examples/example_images/A923527_0.jpeg,F,Yes
+2,A950017,examples/example_images/A950017_0.jpeg,F,Yes
+3,A851293,examples/example_images/A851293_0.jpeg,M,Yes
+4,A492240,examples/example_images/A492240_0.jpeg,M,Yes
+5,A558243,examples/example_images/A558243_0.jpeg,M,Yes
