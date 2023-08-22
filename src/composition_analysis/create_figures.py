@@ -107,11 +107,17 @@ def plot_figures(df, plot:str, save_loc:str, tasks:dict, palette:str|dict|list='
                     base += amount
                     if base < 100 and base > 0:
                         percent_text = f"{base:.2f}%"
-                        if errorbar:
+                        if errorbar and not np.isnan(err):
                             ax.errorbar( amount, label, xerr=err, ecolor='black')
                             percent_text += f" (\u00B1{err:.2f}%)"
                         if show_percent:
-                            ax.text(base, g-(width/1.9), percent_text, ha='center',va='top',fontsize=10)
+                            if base < 5:
+                                ha = 'left'
+                            elif base > 95:
+                                ha = 'right'
+                            else: 
+                                ha = 'center'
+                            ax.text(base, g-(width/1.9), percent_text, ha=ha,va='top',fontsize=10)
                         
         elif plot == 'performance':
             fig, ax = plt.subplots(figsize=(len(df)+2,6))
