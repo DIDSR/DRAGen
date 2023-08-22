@@ -49,7 +49,7 @@ def load_attributes(csv_file:str, subgroup_information:dict, image_path_column:s
   if subgroup_information:# Check how the subgroup information is reported in the csv file
     if set(subgroup_information.keys()).issubset(df.columns): # categorical subgroup information
       for k, v in subgroup_information.items():
-        if set(df[k].unique()) != set(v):
+        if not set(df[k].unique()).issubset(set(v)):
           if missing_information == 'raise':
             raise Exception(f"Found value(s) {set(df[k].unique())} for attribute {k}, only expected value(s) {set(v)}")
           elif missing_information == 'remove':
