@@ -137,7 +137,7 @@ def plot_figures(df, plot:str, save_loc:str, tasks:dict, palette:str|dict|list='
                     err = row[f"{task}:{label}"]['std']
                     c = palette[label]
                 ax.bar(i, amount, width, color=c)
-                if errorbar:
+                if errorbar and not np.isnan(err):
                     ax.errorbar(i, amount,yerr=err, ecolor='k')
                     if show_percent:
                         ax.text(i, amount,  f"{amount:.2f}%\n(\u00B1{err:.2f}%)", ha='left', va='bottom', fontsize=10)
