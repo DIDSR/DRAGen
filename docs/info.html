@@ -14,7 +14,6 @@
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Data Input" href="src.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -37,7 +36,7 @@
 </section>
 <section id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
-<p>Three inputs are required:</p>
+<p>Three inputs are required for this RST:</p>
 <ol class="arabic simple">
 <li><p><strong>Trained Model:</strong> the model must be saved in onnx format. Information on how to convert your model to onnx format can be found at the <a class="reference external" href="https://github.com/onnx/tutorials#converting-to-onnx-format">onnx GitHub page</a>.</p></li>
 <li><p><strong>Images:</strong> Images can be saved in any format supported by PIL.</p></li>
@@ -58,50 +57,6 @@ Example inputs are included in the <code class="docutils literal notranslate"><s
 <li><p><code class="docutils literal notranslate"><span class="pre">vicinal</span> <span class="pre">distribution</span></code>: The collection of virtual images created by linearly interpolating between a ‘triplet’ of three images.</p></li>
 </ul>
 </section>
-<section id="contents">
-<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">DRAGen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src.html">Data Input</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.data_input.load_attributes"><code class="docutils literal notranslate"><span class="pre">load_attributes()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.data_input.load_image"><code class="docutils literal notranslate"><span class="pre">load_image()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="src.html#decision-region-generation">Decision Region Generation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.decision_region_generation.triplet_manager.TripletManager"><code class="docutils literal notranslate"><span class="pre">TripletManager</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.decision_region_generation.generate.generate_decision_regions"><code class="docutils literal notranslate"><span class="pre">generate_decision_regions()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.decision_region_generation.vicinal_distribution.get_plane"><code class="docutils literal notranslate"><span class="pre">get_plane()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.decision_region_generation.vicinal_distribution.plane_dataloader"><code class="docutils literal notranslate"><span class="pre">plane_dataloader</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.decision_region_generation.vicinal_distribution.plane_dataset"><code class="docutils literal notranslate"><span class="pre">plane_dataset</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="src.html#module-src.composition_analysis">Composition Analysis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.composition_analysis.get_compositions"><code class="docutils literal notranslate"><span class="pre">get_compositions()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.composition_analysis.plot_decision_regions"><code class="docutils literal notranslate"><span class="pre">plot_decision_regions()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.composition_analysis.plot_figures"><code class="docutils literal notranslate"><span class="pre">plot_figures()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.composition_analysis.save_compositions"><code class="docutils literal notranslate"><span class="pre">save_compositions()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.html#src.composition_analysis.set_params"><code class="docutils literal notranslate"><span class="pre">set_params()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="args.html">Command Line Arguments</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="args.html#src.args.CustomParser"><code class="docutils literal notranslate"><span class="pre">CustomParser</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="args.html#general-arguments">General Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="args.html#generation-arguments">Generation Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="args.html#analysis-arguments">Analysis Arguments</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</section>
-<section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
-</section>
 
 
           </div>
@@ -120,9 +75,9 @@ Example inputs are included in the <code class="docutils literal notranslate"><s
     </div>
 </div>
 <script>document.getElementById('searchbox').style.display = "block"</script>
-<h3><a href="#">Table of Contents</a></h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">DRAGen</a></li>
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">DRAGen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src.html">Data Input</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src.html#decision-region-generation">Decision Region Generation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="src.html#module-src.composition_analysis">Composition Analysis</a></li>
@@ -132,7 +87,7 @@ Example inputs are included in the <code class="docutils literal notranslate"><s
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
+      <li><a href="_sources/info.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -148,7 +103,7 @@ Example inputs are included in the <code class="docutils literal notranslate"><s
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
-      <a href="_sources/index.rst.txt"
+      <a href="_sources/info.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
