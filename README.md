@@ -3,8 +3,8 @@
 **DRAGen is an AI/ML model agnostic approach to assess generalizability.**
 
 <picture>
-  <source media=(max-width: 799px)" srcset="docs/flowchart_vertical.png" />
-  <source media=(min-width: 800px)" srcset="docs/flowchart.png" />
+  <source media="(max-width: 799px)" srcset="docs/flowchart_vertical.png" />
+  <source media="(min-width: 800px)" srcset="docs/flowchart.png" />
   <img src="docs/flowchart.png" />
 </picture>
 
