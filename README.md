@@ -2,39 +2,11 @@
 
 **DRAGen is an AI/ML model agnostic approach to assess generalizability.**
 
-```mermaid
-graph LR;
-  A -----> E --> F
-  B --> D --> E
-  C ----> F --> G
-
-  style A fill:#913826,stroke:#1f1f1f,stroke-width:4px
-  style B fill:#913826,stroke:#1f1f1f,stroke-width:4px
-  style C fill:#913826,stroke:#1f1f1f,stroke-width:4px
-  subgraph 1 [Input]
-    direction LR
-    A(["Image data"])
-    B{{"Attributes and\nclass labels"}}
-    C>"Binary classification model\n(onnx format)"]
-  end
-
-  style D fill:#2e426e,stroke:#1f1f1f,stroke-width:4px
-  style E fill:#2e426e,stroke:#1f1f1f,stroke-width:4px
-  subgraph 2 [Generation]
-    direction LR
-
-    D["Triplet\nselection"]
-    E["Virtual sample\ngeneration"]
-    
-  end
-  style F fill:#520d3d,stroke:#1f1f1f,stroke-width:4px
-  F{"Model\ninference"}
-
-  style G fill:#104a27,stroke:#1f1f1f,stroke-width:4px
-  subgraph 3 [Analysis]
-    G["Decision regions plots\nand composition"]
-  end
-```
+<picture>
+  <source media=(max-width: 799px)" srcset="docs/flowchart_vertical.png" />
+  <source media=(min-width: 800px)" srcset="docs/flowchart.png" />
+  <img src="docs/flowchart.png" />
+</picture>
 
 <p style="text-align: center;"> Overview of the decision region generation and analysis process  </p>
 
