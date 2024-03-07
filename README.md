@@ -12,7 +12,7 @@
 
 ---
 
-This repository contains the implementation for the methodology in the paper "Decision region analysis for generalizability of artificial intelligence models: estimating model generalizability in the case of cross-reactivity and population shift". The paper is available at this [link](https://doi.org/10.1117/1.JMI.11.1.014501).
+This repository contains the implementation for the methodology in the paper "Decision region analysis for generalizability of artificial intelligence models: estimating model generalizability in the case of cross-reactivity and population shift". The Open Access paper is available at this [link](https://doi.org/10.1117/1.JMI.11.1.014501).
 
 ## Additional References
 - Alexis Burgon, Berkman Sahiner, Nicholas Petrick, Gene Pennello, Kenny H. Cha, Ravi K. Samala, "Decision region analysis for generalizability of artificial intelligence models: estimating model generalizability in the case of cross-reactivity and population shift," J. Med. Imag. 11(1) 014501 (25 January 2024) https://doi.org/10.1117/1.JMI.11.1.014501
