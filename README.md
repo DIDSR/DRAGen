@@ -14,11 +14,12 @@
 
 This repository contains the implementation for the methodology in the paper "Decision region analysis for generalizability of artificial intelligence models: estimating model generalizability in the case of cross-reactivity and population shift". The Open Access paper is available at this [link](https://doi.org/10.1117/1.JMI.11.1.014501).
 
+> View more Regulatory Science Tools (RSTs) at [cdrh-rst.fda.gov](https://cdrh-rst.fda.gov/)
+
 ## Additional References
 - Alexis Burgon, Berkman Sahiner, Nicholas Petrick, Gene Pennello, Kenny H. Cha, Ravi K. Samala, "Decision region analysis for generalizability of artificial intelligence models: estimating model generalizability in the case of cross-reactivity and population shift," J. Med. Imag. 11(1) 014501 (25 January 2024) https://doi.org/10.1117/1.JMI.11.1.014501
 - Alexis Burgon, Nicholas Petrick, Berkman Sahiner, Gene Pennello, Ravi K. Samala, "Predicting AI model behavior on unrepresented subgroups: A test-time approach to increase variability in a finite test set", 2023 FDA Science Forum. ([link](https://www.fda.gov/science-research/fda-science-forum/predicting-ai-model-behavior-unrepresented-subgroups-test-time-approach-increase-variability-finite))
 - Alexis Burgon, Nicholas Petrick, Berkman Sahiner, Gene Pennello, and Ravi K. Samala "Decision region analysis to deconstruct the subgroup influence on AI/ML predictions", Proc. SPIE 12465, Medical Imaging 2023: Computer-Aided Diagnosis, 124651H (7 April 2023); https://doi.org/10.1117/12.2653963
-
 
 <!---
 # Citation
