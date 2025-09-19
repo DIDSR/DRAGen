@@ -21,6 +21,11 @@ This repository contains the implementation for the methodology in the paper "De
 - Alexis Burgon, Nicholas Petrick, Berkman Sahiner, Gene Pennello, Ravi K. Samala, "Predicting AI model behavior on unrepresented subgroups: A test-time approach to increase variability in a finite test set", 2023 FDA Science Forum. ([link](https://www.fda.gov/science-research/fda-science-forum/predicting-ai-model-behavior-unrepresented-subgroups-test-time-approach-increase-variability-finite))
 - Alexis Burgon, Nicholas Petrick, Berkman Sahiner, Gene Pennello, and Ravi K. Samala "Decision region analysis to deconstruct the subgroup influence on AI/ML predictions", Proc. SPIE 12465, Medical Imaging 2023: Computer-Aided Diagnosis, 124651H (7 April 2023); https://doi.org/10.1117/12.2653963
 
+### Tool Reference 
+- RST Reference Number: RST24AI04.01
+- Date of Publication: 09/19/2025
+- Recommended Citation: U.S. Food and Drug Administration. (2025).  DRAGen: Decision Region Analysis for Generalizability (RST24AI04.01). [https://cdrh-rst.fda.gov/dragen-decision-region-analysis-generalizability](https://cdrh-rst.fda.gov/dragen-decision-region-analysis-generalizability)
+
 <!---
 # Citation
 To cite our work:
@@ -62,11 +67,6 @@ python 3.10.6
 Ubuntu 22.04.2 LTS
 ```
 Python package requirements can be found in [requirements.txt](requirements.txt).
-
-## Data
-The data included in the [examples](examples/) folder were accessed through TCIA:
-- Saltz, J., Saltz, M., Prasanna, P., Moffitt, R., Hajagos, J., Bremer, E., Balsamo, J., & Kurc, T. (2021). Stony Brook University COVID-19 Positive Cases [Data set]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.BBAG-2923
-- Clark K, Vendt B, Smith K, Freymann J, Kirby J, Koppel P, Moore S, Phillips S, Maffitt D, Pringle M, Tarbox L, Prior F. The Cancer Imaging Archive (TCIA): Maintaining and Operating a Public Information Repository, Journal of Digital Imaging, Volume 26, Number 6, December, 2013, pp 1045-1057. DOI: [10.1007/s10278-013-9622-7](https://doi.org/10.1007/s10278-013-9622-7)
   
 ## Disclaimer
 ### About the Catalog of Regulatory Science Tools
@@ -74,7 +74,4 @@ The enclosed tool is part of the [Catalog of Regulatory Science Tools](https://c
 
 For more information about the Catalog of Regulatory Science Tools, email [RST_CDRH@fda.hhs.gov](mailto:RST_CDRH@fda.hhs.gov).
 
-### Tool Reference 
-- RST Reference Number: RST24AI04.01
-- Date of Publication: 09/19/2025
-- Recommended Citation: U.S. Food and Drug Administration. (2025).  DRAGen: Decision Region Analysis for Generalizability (RST24AI04.01). [https://cdrh-rst.fda.gov/dragen-decision-region-analysis-generalizability](https://cdrh-rst.fda.gov/dragen-decision-region-analysis-generalizability)
+
